@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "outDir": "dist",
+    "allowJs": true,
+    "strict": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es6",
+    "sourceMap": true,
+    "lib": ["es7", "es2017"],
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": [ "./src/*" ],
+      "@database/*": [ "./src/database/*" ],
+      "@server/*": [ "./src/server/*" ],
+      "@test/*": [ "./test/*" ]
+    }
+  },
+  "include": [
+    "src",
+    "test"
+  ],
+  "exclude": [
+    "node_modules/"
+  ]
+}

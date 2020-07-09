@@ -1,0 +1,30 @@
+version: '3'
+services:
+  # Server
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: pbid_server
+    restart: always
+    environment:
+      NODE_CONFIG: "{\"port\": 6002, \"db_host\": \"pbid_database\"}"
+    depends_on:
+      - mongodb
+    ports:
+    - 6002:6002
+    networks:
+      - pbid
+
+  # Mongo
+  mongodb:
+    image: mongo
+    container_name: pbid_database
+    ports:
+    - "27017-27019:27017-27019"
+    networks:
+    - pbid
+
+networks:
+  pbid:
+
