@@ -5,7 +5,10 @@
         404
       </div>
 
-      <div class="text-h2" style="opacity:.4">
+      <div
+        class="text-h2"
+        style="opacity:.4"
+      >
         Oops. Nothing here...
       </div>
 
@@ -26,6 +29,6 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'Error404'
+  name: 'Error404',
 });
 </script>

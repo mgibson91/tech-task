@@ -25,6 +25,18 @@ services:
     networks:
     - pbid
 
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pbid_frontend
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      - pbid
+
 networks:
   pbid:
 

@@ -13,9 +13,6 @@ export async function connect(params: { host: string, databaseName: string }) {
 
     Mongoose.connect(uri, {
       useNewUrlParser: true,
-      // useFindAndModify: true,
-      // useUnifiedTopology: true,
-      // useCreateIndex: true,
     });
 
     database = Mongoose.connection;

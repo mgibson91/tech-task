@@ -31,7 +31,20 @@ const app = express();
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
-app.options('*', cors());
+app.use(cors({
+  origin: function (origin: any, callback: any) {
+    logger.info(`request origin: ${origin}`);
+
+    if (['http://localhost:8080', 'http://localhost:8081', 'http://pbid_frontend:80'].indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    }
+    else {
+      // NOTE: Doesn't actually throw an error
+      logger.error(`CORS prevent access from origin ${origin}`);
+      callback(null, false);
+    }
+  },
+}));
 
 const validations = {
   addShortUrl: [
@@ -67,7 +80,7 @@ app.use((err: any, req: any, res: any, next: any) => {
 
   if (err instanceof ExpressValidationError) {
     const errors = err.errors;
-    console.error(errors);
+    logger.error(errors);
 
     return res.status(500).json({
       error: err.constructor.name,
@@ -88,7 +101,7 @@ app.use((err: any, req: any, res: any, next: any) => {
 
   res.status(500).json(error);
 
-  console.error(`${error.error}: ${error.message}`);
+  logger.error(`${error.error}: ${error.message}`);
 });
 
 // Start database

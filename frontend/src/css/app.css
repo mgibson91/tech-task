@@ -1,1 +1,100 @@
 /* app global css */
+.flex-auto {
+  flex: auto;
+}
+
+.full-size {
+  flex: auto;
+  align-self: stretch;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+/* Padding helpers */
+.padding-medium {
+  padding: 16px;
+}
+
+.padding-y-medium {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.padding-x-medium {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.padding-y-small {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.padding-x-small {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* Margin helpers */
+.margin-medium {
+  margin: 16px;
+}
+
+.margin-right-medium {
+  margin-right: 16px;
+}
+
+.margin-bottom-small {
+  margin-bottom: 8px;
+}
+
+/* Adding colors in format required by quasar: https://quasar.dev/style/color-palette */
+.text-brand1 {
+  color: #09143D;
+}
+
+.bg-brand1 {
+  background: #09143D;
+}
+
+.text-brand2 {
+  color: #4CC3B9;
+}
+
+.bg-brand2 {
+  background: #4CC3B9;
+}
+
+/* Position utils */
+.position-relative {
+  position: relative;
+}
+
+/* Width utils */
+.min-width-300px {
+  min-width: 300px;
+}
+
+/* Text utils */
+.truncate {
+  width: 250px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

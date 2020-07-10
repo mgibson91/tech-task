@@ -7,7 +7,7 @@ import routes from './routes';
  * directly export the Router instantiation
  */
 
-export default route(function ({ Vue }) {
+export default route(({ Vue }) => {
   Vue.use(VueRouter);
 
   const Router = new VueRouter({
@@ -18,8 +18,8 @@ export default route(function ({ Vue }) {
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
     mode: process.env.VUE_ROUTER_MODE,
-    base: process.env.VUE_ROUTER_BASE
+    base: process.env.VUE_ROUTER_BASE,
   });
 
   return Router;
-})
+});

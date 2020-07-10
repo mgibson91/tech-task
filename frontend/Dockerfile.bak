@@ -1,0 +1,30 @@
+# STAGE 1
+# Build the source code is the builder image to be then copied over to the final image to
+# reduce the docker image size
+FROM node:12 as builder
+
+# Set the working directory for this image
+WORKDIR /usr/pbid-frontend
+
+# Copy the dependency management files over first so that this layer can be cached by docker
+# No need to re-acquire the node_modules everytime we only make a source code change
+COPY package*.json yarn.lock ./
+# Install all our development dependencies to build the code
+RUN yarn install --frozen-lockfile
+
+# Copy everything from the root level of the project into the builder image for it to work on
+COPY . .
+# Build the code
+RUN yarn build
+
+# STAGE 2
+FROM nginx:stable-alpine
+
+WORKDIR /usr/pbid-frontend
+
+# Copy in the nginx config from source
+COPY ./nginx-conf/nginx.conf /etc/nginx/nginx.conf
+# From the stage 1 build copy the compiled code only over to this image
+COPY --from=builder /usr/pbid-frontend/dist/spa /usr/share/nginx/html
+
+EXPOSE 80

@@ -1,11 +1,14 @@
 import { Schema } from 'mongoose';
 
 const ShortUrlSchema = new Schema({
-  shortUrl: String,
+  shortUrl: {
+    type: String,
+    unique: true, // Prevent duplicates
+  },
   originalUrl: String,
   createdAt: {
     type: Date,
-    default: new Date(),
+    default: () => new Date(),
   },
 });
 
